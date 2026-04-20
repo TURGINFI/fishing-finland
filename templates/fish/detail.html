@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}{{ item.name }}{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>{{ item.name }}</h2>
+    <p class="meta">{{ item.latin_name }}</p>
+    <p><strong>Minimum size:</strong> {{ item.min_size_cm|default:'-' }} cm</p>
+    <p><strong>Daily limit:</strong> {{ item.daily_limit|default:'-' }}</p>
+    <p><strong>Recommended methods:</strong> {{ item.methods|default:'-' }}</p>
+    <div>{{ item.description|linebreaks }}</div>
+</div>
+{% endblock %}

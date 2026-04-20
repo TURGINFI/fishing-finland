@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Fishing Regulations{% endblock %}
+{% block content %}
+<h2>Fishing Regulations</h2>
+{% for item in items %}
+<article class="card">
+    <h3><a href="{{ item.pk }}/">{{ item.title }}</a></h3>
+    <p class="meta">{{ item.area }} {% if item.season %}· {{ item.season }}{% endif %}</p>
+    <p>{{ item.summary|default:item.content|truncatewords:25 }}</p>
+</article>
+{% empty %}<p>No regulation content yet.</p>{% endfor %}
+{% endblock %}

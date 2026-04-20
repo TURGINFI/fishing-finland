@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Fishing Spots{% endblock %}
+{% block content %}
+<h2>Fishing Spots</h2>
+<div class="grid">
+{% for item in items %}
+<article class="card">
+    <h3>{{ item.name }}</h3>
+    <p class="meta">{{ item.area }}{% if item.best_season %} · Best season: {{ item.best_season }}{% endif %}</p>
+    <p>{{ item.description|truncatewords:25 }}</p>
+    {% if item.latitude and item.longitude %}
+        <p>Coordinates: {{ item.latitude }}, {{ item.longitude }}</p>
+    {% endif %}
+</article>
+{% empty %}<p>No spots yet.</p>{% endfor %}
+</div>
+{% endblock %}

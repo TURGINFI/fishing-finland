@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Events{% endblock %}
+{% block content %}
+<h2>Fishing Events</h2>
+{% for event in events %}
+<article class="card">
+    <h3><a href="{{ event.pk }}/">{{ event.title }}</a></h3>
+    <p class="meta">{{ event.start_time }} · {{ event.location }}</p>
+    <p>{{ event.description|truncatewords:25 }}</p>
+</article>
+{% empty %}<p>No events yet.</p>{% endfor %}
+{% endblock %}

@@ -1,0 +1,7 @@
+from django.apps import AppConfig
+
+
+class CatchesConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'apps.catches'
+    verbose_name = 'Catches'

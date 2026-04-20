@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Fish Species{% endblock %}
+{% block content %}
+<h2>Fish Species</h2>
+<div class="grid">
+{% for item in items %}
+<article class="card">
+    <h3><a href="{{ item.pk }}/">{{ item.name }}</a></h3>
+    <p class="meta">{{ item.latin_name }}</p>
+    <p>{{ item.description|truncatewords:25 }}</p>
+</article>
+{% empty %}<p>No fish entries yet.</p>{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Gear Recommendations{% endblock %}
+{% block content %}
+<h2>Gear Recommendations</h2>
+<div class="grid">
+{% for item in items %}
+<article class="card">
+    <h3>{{ item.title }}</h3>
+    <p class="meta">{{ item.category }}</p>
+    <p>{{ item.description|truncatewords:25 }}</p>
+    <a href="{{ item.partner_url }}" target="_blank" rel="noopener">Visit partner store</a>
+</article>
+{% empty %}<p>No recommendations yet.</p>{% endfor %}
+</div>
+{% endblock %}

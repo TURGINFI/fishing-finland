@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero card">
+    <h2>Welcome to Fishing in Finland</h2>
+    <p>An English platform for foreign anglers in Finland. Learn local regulations, discover species, join events, share blog posts, and track your catches.</p>
+</section>
+<section>
+    <h3>Upcoming Events</h3>
+    <div class="grid">
+        {% for event in upcoming_events %}
+            <article class="card">
+                <h4><a href="/events/{{ event.pk }}/">{{ event.title }}</a></h4>
+                <p class="meta">{{ event.start_time }} · {{ event.location }}</p>
+                <p>{{ event.description|truncatewords:20 }}</p>
+            </article>
+        {% empty %}
+            <p>No events yet.</p>
+        {% endfor %}
+    </div>
+</section>
+<section>
+    <h3>Latest Approved Blogs</h3>
+    <div class="grid">
+        {% for post in latest_blogs %}
+            <article class="card">
+                <h4><a href="/blog/{{ post.pk }}/">{{ post.title }}</a></h4>
+                <p class="meta">{{ post.author.username }} · {{ post.created_at|date:'Y-m-d' }}</p>
+                <p>{{ post.excerpt|default:post.content|truncatewords:20 }}</p>
+            </article>
+        {% empty %}
+            <p>No blog posts yet.</p>
+        {% endfor %}
+    </div>
+</section>
+<section>
+    <h3>Featured Gear</h3>
+    <div class="grid">
+        {% for item in featured_gear %}
+            <article class="card">
+                <h4>{{ item.title }}</h4>
+                <p>{{ item.description|truncatewords:16 }}</p>
+                <a href="{{ item.partner_url }}" target="_blank" rel="noopener">Visit partner</a>
+            </article>
+        {% empty %}
+            <p>No featured recommendations yet.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

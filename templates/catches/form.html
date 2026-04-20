@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Add Catch{% endblock %}
+{% block content %}
+<h2>Add Catch Log Entry</h2>
+<form method="post" class="card form-card">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save catch</button>
+</form>
+{% endblock %}

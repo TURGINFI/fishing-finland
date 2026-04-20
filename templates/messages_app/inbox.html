@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Inbox{% endblock %}
+{% block content %}
+<h2>Inbox</h2>
+{% for msg in messages_list %}
+<div class="card">
+    <h3>{{ msg.subject }}</h3>
+    <p class="meta">{{ msg.created_at|date:'Y-m-d H:i' }} · {% if msg.is_read %}Read{% else %}Unread{% endif %}</p>
+    <p>{{ msg.body|linebreaks }}</p>
+    {% if not msg.is_read %}
+        <a href="{{ msg.pk }}/read/">Mark as read</a>
+    {% endif %}
+</div>
+{% empty %}<p>No messages.</p>{% endfor %}
+{% endblock %}
