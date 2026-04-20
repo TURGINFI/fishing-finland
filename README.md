@@ -1,6 +1,6 @@
 # Fishing in Finland for Foreign Anglers
 
-A Dockerized Django MVP for Sara's AISWD personal project. The site is an English web platform for foreign fishing enthusiasts in Finland. It includes public information pages, member features, admin moderation, catch logging, goals, events, and gear recommendations.
+A Dockerized Django MVP for mine AISWD personal project. The site is an English web platform for foreign fishing enthusiasts in Finland. It includes public information pages, member features, admin moderation, catch logging, goals, events, and gear recommendations.
 
 ## Tech stack
 - Django
