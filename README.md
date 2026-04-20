@@ -27,8 +27,8 @@ A Dockerized Django MVP for Sara's AISWD personal project. The site is an Englis
    docker compose exec web python manage.py createsuperuser
    ```
 6. Open the site:
-   - App: http://localhost:8000/
-   - Admin: http://localhost:8000/admin/
+   - App: http://localhost:8000/    # if 8000 is occupied, you can define your port 
+   - Admin: http://localhost:8000/admin/  # if 8000 is occupied, you can define your port 
 
 ## Useful Docker commands
 ```bash
