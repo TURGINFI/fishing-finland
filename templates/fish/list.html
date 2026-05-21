@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}Fish Species{% endblock %}
 {% block content %}
-<h2>Fish Species</h2>
+<section class="section container">
+<div class="section-heading center">
+    <p class="eyebrow">Know the species</p>
+    <h2>Fish Species</h2>
+    <p class="lead">Learn the common fish you may encounter in Finland, including size guidance, daily limits, and suitable methods.</p>
+</div>
 <div class="grid">
 {% for item in items %}
 <article class="card">
@@ -11,4 +16,5 @@
 </article>
 {% empty %}<p>No fish entries yet.</p>{% endfor %}
 </div>
+</section>
 {% endblock %}

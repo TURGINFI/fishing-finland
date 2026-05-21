@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
 from .models import PlatformMessage
 
 
@@ -10,8 +11,9 @@ def inbox_list(request):
 
 
 @login_required
+@require_POST
 def mark_message_read(request, pk):
     msg = get_object_or_404(PlatformMessage, pk=pk, recipient=request.user)
     msg.is_read = True
-    msg.save()
+    msg.save(update_fields=['is_read'])
     return redirect('inbox_list')

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}My Events{% endblock %}
 {% block content %}
+<section class="section container">
 <h2>My Event Registrations</h2>
 <table class="table">
     <tr><th>Event</th><th>Date</th><th>Location</th></tr>
@@ -10,4 +11,5 @@
     <tr><td colspan="3">No registrations yet.</td></tr>
     {% endfor %}
 </table>
+</section>
 {% endblock %}

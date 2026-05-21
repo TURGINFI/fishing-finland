@@ -1,48 +1,152 @@
 {% extends 'base.html' %}
+{% block title %}Fishing in Finland{% endblock %}
 {% block content %}
-<section class="hero card">
-    <h2>Welcome to Fishing in Finland</h2>
-    <p>An English platform for foreign anglers in Finland. Learn local regulations, discover species, join events, share blog posts, and track your catches.</p>
+<section class="hero">
+    <div class="hero-overlay">
+        <div class="container hero-content">
+            <p class="eyebrow">Made for foreign anglers in Finland</p>
+            <h1>Know the water before you cast.</h1>
+            <p>A cleaner way to understand Finnish fishing rules, discover species and places, join local events, and keep your catches organized.</p>
+            <div class="hero-actions">
+                <a class="button" href="/regulations/">Start with regulations</a>
+                <a class="button secondary" href="/fish-species/">Explore species</a>
+            </div>
+        </div>
+    </div>
 </section>
-<section>
-    <h3>Upcoming Events</h3>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading center">
+            <p class="eyebrow">Everything in one place</p>
+            <h2>Simple, calm, and useful.</h2>
+            <p class="lead">The site is organized around the questions visitors actually have: what is allowed, what fish live here, where to go, what to bring, and how to track the trip afterwards.</p>
+        </div>
+        <div class="quick-grid">
+            <article class="card">
+                <p class="pill">Rules</p>
+                <h3>Understand permits and restrictions.</h3>
+                <p>Use the regulations area as your first stop before fishing in a new place. Check area notes, seasons, and species-specific guidance.</p>
+            </article>
+            <article class="card">
+                <p class="pill">Trips</p>
+                <h3>Plan around events and spots.</h3>
+                <p>Browse public locations and community events so your fishing day has a clearer plan before you leave home.</p>
+            </article>
+            <article class="card">
+                <p class="pill">Logbook</p>
+                <h3>Keep your progress private.</h3>
+                <p>Members can save catch records and yearly goals, making it easier to learn what works across seasons.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section section-muted">
+    <div class="container">
+        <div class="feature-showcase">
+            <div class="feature-copy">
+                <p class="eyebrow">Regulations first</p>
+                <h2>Fish with confidence.</h2>
+                <p>Finland has beautiful public waters, but rules can depend on location, method, season, and species. The platform puts regulation pages near the start of the journey so planning feels clear instead of stressful.</p>
+                <p><a href="/regulations/">Read regulations</a></p>
+            </div>
+            <div class="feature-media regulations" aria-label="Fishing planning table with map and permit"></div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="feature-showcase reverse">
+            <div class="feature-copy">
+                <p class="eyebrow">Community events</p>
+                <h2>Meet the local rhythm.</h2>
+                <p>Events help newcomers understand fishing culture, ask practical questions, and discover waters with people who already know the area.</p>
+                <p><a href="/events/">Browse events</a></p>
+            </div>
+            <div class="feature-media events" aria-label="Anglers preparing for a Finnish lakeside event"></div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-muted">
+    <div class="container">
+        <div class="feature-showcase">
+            <div class="feature-copy">
+                <p class="eyebrow">Personal logbook</p>
+                <h2>Remember what worked.</h2>
+                <p>Track catches, goals, locations, notes, and gear choices. Over time, your own records become the most useful guide for the next trip.</p>
+                <p><a href="/catch-log/">Open catch log</a></p>
+            </div>
+            <div class="feature-media logbook" aria-label="Catch log and fishing gear on a clean table"></div>
+        </div>
+    </div>
+</section>
+
+<section class="section container">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">Plan ahead</p>
+            <h2>Upcoming Events</h2>
+        </div>
+        <a href="/events/">View all</a>
+    </div>
     <div class="grid">
         {% for event in upcoming_events %}
             <article class="card">
-                <h4><a href="/events/{{ event.pk }}/">{{ event.title }}</a></h4>
+                <p class="pill">{{ event.start_time|date:'M j' }}</p>
+                <h3><a href="/events/{{ event.pk }}/">{{ event.title }}</a></h3>
                 <p class="meta">{{ event.start_time }} · {{ event.location }}</p>
                 <p>{{ event.description|truncatewords:20 }}</p>
             </article>
         {% empty %}
-            <p>No events yet.</p>
+            <p class="empty-state">No events yet. Add events in Django admin to make this section useful for visitors.</p>
         {% endfor %}
     </div>
 </section>
-<section>
-    <h3>Latest Approved Blogs</h3>
+
+<section class="section section-muted">
+    <div class="container">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">Community notes</p>
+            <h2>Latest Approved Blogs</h2>
+        </div>
+        <a href="/blog/">Read blog</a>
+    </div>
     <div class="grid">
         {% for post in latest_blogs %}
             <article class="card">
-                <h4><a href="/blog/{{ post.pk }}/">{{ post.title }}</a></h4>
+                <h3><a href="/blog/{{ post.pk }}/">{{ post.title }}</a></h3>
                 <p class="meta">{{ post.author.username }} · {{ post.created_at|date:'Y-m-d' }}</p>
                 <p>{{ post.excerpt|default:post.content|truncatewords:20 }}</p>
             </article>
         {% empty %}
-            <p>No blog posts yet.</p>
+            <p class="empty-state">No blog posts yet.</p>
         {% endfor %}
     </div>
+    </div>
 </section>
-<section>
-    <h3>Featured Gear</h3>
+
+<section class="section container">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">Recommended kit</p>
+            <h2>Featured Gear</h2>
+        </div>
+        <a href="/gear/">Explore gear</a>
+    </div>
     <div class="grid">
         {% for item in featured_gear %}
             <article class="card">
-                <h4>{{ item.title }}</h4>
+                <p class="pill">{{ item.category }}</p>
+                <h3>{{ item.title }}</h3>
                 <p>{{ item.description|truncatewords:16 }}</p>
                 <a href="{{ item.partner_url }}" target="_blank" rel="noopener">Visit partner</a>
             </article>
         {% empty %}
-            <p>No featured recommendations yet.</p>
+            <p class="empty-state">No featured recommendations yet.</p>
         {% endfor %}
     </div>
 </section>

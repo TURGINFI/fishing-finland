@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
 {% block title %}Blog{% endblock %}
 {% block content %}
-<div class="card"><h2>Community Blog</h2>{% if user.is_authenticated %}<a href="{% url 'blog_create' %}">Submit a blog post</a> · <a href="{% url 'my_blog_list' %}">My posts</a>{% endif %}</div>
+<section class="section container">
+<div class="section-heading center">
+    <div>
+        <p class="eyebrow">Community</p>
+        <h2>Community Blog</h2>
+        <p class="lead">Stories, advice, and trip notes from anglers learning Finnish waters.</p>
+    </div>
+    {% if user.is_authenticated %}<div><a class="button" href="{% url 'blog_create' %}">Submit post</a> <a href="{% url 'my_blog_list' %}">My posts</a></div>{% endif %}
+</div>
 {% for post in posts %}
 <article class="card">
     <h3><a href="{{ post.pk }}/">{{ post.title }}</a></h3>
     <p class="meta">By {{ post.author.username }} · {{ post.created_at|date:'Y-m-d' }}</p>
     <p>{{ post.excerpt|default:post.content|truncatewords:30 }}</p>
 </article>
-{% empty %}<p>No approved posts yet.</p>{% endfor %}
+{% empty %}<p class="empty-state">No approved posts yet.</p>{% endfor %}
+</section>
 {% endblock %}

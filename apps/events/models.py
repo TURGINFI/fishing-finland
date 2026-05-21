@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.db import models
 
 
@@ -9,6 +10,20 @@ class Event(models.Model):
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     max_participants = models.PositiveIntegerField(blank=True, null=True)
+
+    def clean(self):
+        if self.start_time and self.end_time and self.end_time <= self.start_time:
+            raise ValidationError({'end_time': 'End time must be after start time.'})
+
+    @property
+    def spots_left(self):
+        if self.max_participants is None:
+            return None
+        return max(self.max_participants - self.registrations.count(), 0)
+
+    @property
+    def is_full(self):
+        return self.max_participants is not None and self.registrations.count() >= self.max_participants
 
     def __str__(self):
         return self.title

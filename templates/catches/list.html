@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}Catch Log{% endblock %}
 {% block content %}
-<div class="card"><h2>My Catch Log</h2><a href="new/">Add catch</a></div>
+<section class="section container">
+<div class="section-heading"><h2>My Catch Log</h2><a class="button" href="new/">Add catch</a></div>
 <table class="table">
 <tr><th>Fish</th><th>Date</th><th>Location</th><th>Weight (kg)</th><th>Length (cm)</th></tr>
 {% for item in items %}
 <tr><td>{{ item.fish_name }}</td><td>{{ item.caught_at }}</td><td>{{ item.location }}</td><td>{{ item.weight_kg|default:'-' }}</td><td>{{ item.length_cm|default:'-' }}</td></tr>
 {% empty %}<tr><td colspan="5">No catches yet.</td></tr>{% endfor %}
 </table>
+</section>
 {% endblock %}

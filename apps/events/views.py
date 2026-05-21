@@ -1,11 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
 from .models import Event, EventRegistration
 
 
 def event_list(request):
-    events = Event.objects.order_by('start_time')
+    events = Event.objects.order_by('start_time').prefetch_related('registrations')
     return render(request, 'events/list.html', {'events': events})
 
 
@@ -16,9 +17,16 @@ def event_detail(request, pk):
 
 
 @login_required
+@require_POST
 def register_for_event(request, pk):
     event = get_object_or_404(Event, pk=pk)
-    EventRegistration.objects.get_or_create(user=request.user, event=event)
+    if EventRegistration.objects.filter(user=request.user, event=event).exists():
+        messages.info(request, 'You are already registered for this event.')
+        return redirect('event_detail', pk=event.pk)
+    if event.is_full:
+        messages.error(request, 'This event is already full.')
+        return redirect('event_detail', pk=event.pk)
+    EventRegistration.objects.create(user=request.user, event=event)
     messages.success(request, 'You have registered for the event.')
     return redirect('my_events')
 

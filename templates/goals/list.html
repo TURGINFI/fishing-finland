@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% block title %}Fishing Goals{% endblock %}
 {% block content %}
-<div class="card"><h2>My Fishing Goals</h2><a href="new/">Add goal</a></div>
+<section class="section container">
+<div class="section-heading"><h2>My Fishing Goals</h2><a class="button" href="new/">Add goal</a></div>
 <table class="table">
 <tr><th>Year</th><th>Fish</th><th>Target</th><th>Progress</th><th>Status</th></tr>
 {% for goal in goals %}
 <tr><td>{{ goal.year }}</td><td>{{ goal.target_fish }}</td><td>{{ goal.target_count }}</td><td>{{ goal.progress }}</td><td>{% if goal.is_completed %}Completed{% else %}In progress{% endif %}</td></tr>
 {% empty %}<tr><td colspan="5">No goals yet.</td></tr>{% endfor %}
 </table>
+</section>
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Inbox{% endblock %}
 {% block content %}
+<section class="section container narrow">
 <h2>Inbox</h2>
 {% for msg in messages_list %}
 <div class="card">
@@ -8,8 +9,9 @@
     <p class="meta">{{ msg.created_at|date:'Y-m-d H:i' }} · {% if msg.is_read %}Read{% else %}Unread{% endif %}</p>
     <p>{{ msg.body|linebreaks }}</p>
     {% if not msg.is_read %}
-        <a href="{{ msg.pk }}/read/">Mark as read</a>
+        <form method="post" action="{{ msg.pk }}/read/" class="inline-form">{% csrf_token %}<button type="submit">Mark as read</button></form>
     {% endif %}
 </div>
-{% empty %}<p>No messages.</p>{% endfor %}
+{% empty %}<p class="empty-state">No messages.</p>{% endfor %}
+</section>
 {% endblock %}

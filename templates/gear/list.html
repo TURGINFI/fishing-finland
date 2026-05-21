@@ -1,15 +1,21 @@
 {% extends 'base.html' %}
 {% block title %}Gear Recommendations{% endblock %}
 {% block content %}
-<h2>Gear Recommendations</h2>
+<section class="section container">
+<div class="section-heading center">
+    <p class="eyebrow">Pack smarter</p>
+    <h2>Gear Recommendations</h2>
+    <p class="lead">Simple gear ideas for Finnish conditions, from everyday spinning setups to seasonal accessories.</p>
+</div>
 <div class="grid">
 {% for item in items %}
 <article class="card">
+    <p class="pill">{{ item.category }}</p>
     <h3>{{ item.title }}</h3>
-    <p class="meta">{{ item.category }}</p>
     <p>{{ item.description|truncatewords:25 }}</p>
     <a href="{{ item.partner_url }}" target="_blank" rel="noopener">Visit partner store</a>
 </article>
-{% empty %}<p>No recommendations yet.</p>{% endfor %}
+{% empty %}<p class="empty-state">No recommendations yet.</p>{% endfor %}
 </div>
+</section>
 {% endblock %}

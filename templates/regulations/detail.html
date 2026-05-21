@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}{{ item.title }}{% endblock %}
 {% block content %}
-<div class="card">
+<section class="section container narrow">
+<div class="card detail-card">
     <h2>{{ item.title }}</h2>
     <p class="meta">{{ item.area }} {% if item.season %}· {{ item.season }}{% endif %}</p>
     <div>{{ item.content|linebreaks }}</div>
 </div>
+</section>
 {% endblock %}

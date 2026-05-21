@@ -1,8 +1,33 @@
 {% extends 'base.html' %}
 {% block title %}Fishing Methods{% endblock %}
 {% block content %}
-<h2>Fishing Methods</h2>
-<div class="card">
-    <p>This MVP page introduces common techniques such as spinning, jigging, fly fishing, ice fishing, and bait fishing. You can later replace this text with richer AI-assisted content.</p>
+<section class="section container narrow">
+<div class="section-heading center">
+    <p class="eyebrow">Choose a technique</p>
+    <h2>Fishing Methods</h2>
+    <p class="lead">Different waters and seasons reward different methods. Use this overview as a starting point, then check the local rules before fishing.</p>
 </div>
+<div class="grid">
+    <article class="card">
+        <p class="pill">Easy start</p>
+        <h3>Spinning</h3>
+        <p>A practical method for pike, perch, and zander. Good for shore fishing and short exploratory trips.</p>
+    </article>
+    <article class="card">
+        <p class="pill">Cold season</p>
+        <h3>Ice fishing</h3>
+        <p>A Finnish winter classic. Safety, ice thickness, and local restrictions matter as much as tackle choice.</p>
+    </article>
+    <article class="card">
+        <p class="pill">Precision</p>
+        <h3>Jigging</h3>
+        <p>Useful for perch and zander when fish are holding near structure or deeper water.</p>
+    </article>
+    <article class="card">
+        <p class="pill">Rivers</p>
+        <h3>Fly fishing</h3>
+        <p>A rewarding option on suitable rivers and streams. Always check species rules, permits, and seasons.</p>
+    </article>
+</div>
+</section>
 {% endblock %}

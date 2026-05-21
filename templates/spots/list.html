@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}Fishing Spots{% endblock %}
 {% block content %}
-<h2>Fishing Spots</h2>
+<section class="section container">
+<div class="section-heading center">
+    <p class="eyebrow">Where to start</p>
+    <h2>Fishing Spots</h2>
+    <p class="lead">Browse suggested areas and seasonal notes. Always verify local rules before fishing a new water.</p>
+</div>
 <div class="grid">
 {% for item in items %}
 <article class="card">
@@ -12,6 +17,7 @@
         <p>Coordinates: {{ item.latitude }}, {{ item.longitude }}</p>
     {% endif %}
 </article>
-{% empty %}<p>No spots yet.</p>{% endfor %}
+{% empty %}<p class="empty-state">No spots yet.</p>{% endfor %}
 </div>
+</section>
 {% endblock %}

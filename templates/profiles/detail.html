@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 {% block title %}Profile{% endblock %}
 {% block content %}
-<div class="card">
+<section class="section container narrow">
+<div class="card detail-card">
     <h2>{{ request.user.username }}</h2>
+    {% if profile.avatar %}<img class="avatar" src="{{ profile.avatar.url }}" alt="Profile avatar">{% endif %}
     <p><strong>Email:</strong> {{ request.user.email }}</p>
     <p><strong>Age:</strong> {{ profile.age|default:'-' }}</p>
     <p><strong>Fishing gear:</strong> {{ profile.fishing_gear|default:'-' }}</p>
     <p><strong>Bio:</strong> {{ profile.bio|default:'-' }}</p>
-    <a href="{% url 'profile_edit' %}">Edit profile</a>
+    <a class="button" href="{% url 'profile_edit' %}">Edit profile</a>
 </div>
+</section>
 {% endblock %}
